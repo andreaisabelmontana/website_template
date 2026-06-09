@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Personal Website Template — Built From Scratch</title>
+<meta name="description" content="An original from-scratch build of a reusable personal website template: a Django starter that anyone can clone and fill with their own publications, projects and talks." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --accent:#8b5cf6; --accent-soft:#f0eafe; --ink:#16201f; --muted:#5d6b69;
+    --line:#dfe5e3; --bg:#fbfcfb; --card:#ffffff;
+    --serif:'Fraunces',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:860px;margin:0 auto;padding:0 28px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  code{font-family:var(--mono);font-size:.86em;background:var(--accent-soft);padding:.1em .4em;border-radius:4px;color:#6d28d9}
+  h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.15;letter-spacing:-.01em}
+  /* Header */
+  header.hero{padding:88px 0 56px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin:0 0 22px}
+  h1{font-size:clamp(2.6rem,6vw,4.1rem);margin:0 0 18px}
+  .lede{font-size:1.22rem;color:var(--muted);max-width:62ch;margin:0 0 28px}
+  .meta{display:flex;flex-wrap:wrap;gap:10px;font-size:.82rem}
+  .chip{font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:var(--muted);background:var(--card)}
+  /* Sections */
+  section{padding:54px 0;border-bottom:1px solid var(--line)}
+  .kicker{font-family:var(--mono);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+  h2{font-size:clamp(1.7rem,3.4vw,2.3rem);margin:0 0 20px}
+  h3{font-size:1.2rem;margin:0 0 6px}
+  p{margin:0 0 18px;max-width:68ch}
+  .muted{color:var(--muted)}
+  /* Stack grid */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:8px}
+  .tool{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .tool .t{font-family:var(--mono);font-size:.78rem;color:var(--accent);letter-spacing:.04em;margin-bottom:8px}
+  .tool h3{font-size:1.05rem;font-family:var(--sans);font-weight:600;margin-bottom:6px}
+  .tool p{font-size:.92rem;color:var(--muted);margin:0}
+  /* Pipeline / modules */
+  ol.flow{counter-reset:s;list-style:none;padding:0;margin:24px 0 0}
+  ol.flow li{position:relative;padding:18px 0 18px 56px;border-top:1px solid var(--line)}
+  ol.flow li:before{counter-increment:s;content:counter(s,decimal-leading-zero);position:absolute;left:0;top:18px;font-family:var(--mono);font-size:.8rem;color:var(--accent);border:1px solid var(--line);border-radius:8px;width:38px;height:38px;display:grid;place-items:center;background:var(--card)}
+  ol.flow li h3{font-family:var(--sans);font-size:1.02rem;font-weight:600;margin:0 0 4px}
+  ol.flow li p{margin:0;font-size:.93rem;color:var(--muted)}
+  .tag{display:inline-block;font-family:var(--mono);font-size:.68rem;padding:2px 7px;border-radius:5px;margin-left:8px;vertical-align:middle}
+  .tag.on{background:#e6f7ec;color:#1c7a43}
+  .tag.off{background:#fdecea;color:#b23b2c}
+  /* Callout */
+  .callout{background:var(--accent-soft);border:1px solid #d8c8fb;border-radius:14px;padding:24px 26px;margin-top:8px}
+  .callout p:last-child{margin:0}
+  /* Reflection list */
+  ul.learn{list-style:none;padding:0;margin:8px 0 0}
+  ul.learn li{padding:14px 0 14px 30px;border-top:1px solid var(--line);position:relative;color:var(--muted);max-width:68ch}
+  ul.learn li:before{content:"→";position:absolute;left:0;color:var(--accent);font-family:var(--mono)}
+  ul.learn li b{color:var(--ink);font-weight:600}
+  /* Footer */
+  footer{padding:48px 0 80px}
+  .credit{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px}
+  .credit .k{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+  footer .fine{font-size:.8rem;color:var(--muted);margin-top:22px;text-align:center}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">From-Scratch Build · Starter Kit</p>
+    <h1>Personal Website Template</h1>
+    <p class="lede">A reusable starter that anyone can clone to stand up their own academic personal site in minutes — pages for projects, publications, talks and courses already wired to an admin, waiting to be filled. Rebuilt from scratch to learn what makes a project a reusable template rather than a one-off site.</p>
+    <div class="meta">
+      <span class="chip">Django</span><span class="chip">Template repo</span><span class="chip">SQLite</span>
+      <span class="chip">Markdown</span><span class="chip">Docker</span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">What it is</p>
+    <h2>A site you start from, not finish</h2>
+    <p>Most websites are built for one person. This one is built to be <b>copied</b>. It's a Django starter with the whole skeleton of a personal academic site already in place — the page structure, the content models, the admin, the styling — but deliberately empty, so the next person fills it with <i>their</i> projects and papers.</p>
+    <p>I built it to learn the difference between writing a site and writing a <b>template</b>. A template has to be generic, easy to configure, and quick to make your own. Every hard-coded name or detail you remove is a decision about what should be the user's to fill in.</p>
+    <div class="callout">
+      <p><b>The core idea I wanted to learn:</b> good templates are about <i>defaults and seams</i>. Sensible defaults so it works the moment you clone it, and clear seams — settings, content models, styles — where you're meant to make it yours.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">The stack</p>
+    <h2>Tools under the hood</h2>
+    <p class="muted">The point of this rebuild was the toolchain. Here is what each piece actually does in the system.</p>
+    <div class="grid">
+      <div class="tool"><div class="t">framework</div><h3>Django</h3><p>The web framework providing the scaffolding — URL routing, the ORM, templating and the admin a new owner edits content through.</p></div>
+      <div class="tool"><div class="t">structure</div><h3>Page templates</h3><p>About, projects, publications, talks, courses and contact pages already exist, extending one shared <code>base.html</code> layout.</p></div>
+      <div class="tool"><div class="t">content</div><h3>Content models</h3><p>Pre-built models for the common pieces of an academic site, so the admin forms are ready before any data is entered.</p></div>
+      <div class="tool"><div class="t">authoring</div><h3>Markdown + filters</h3><p>Custom template filters render Markdown to HTML, letting the new owner write rich text without touching code.</p></div>
+      <div class="tool"><div class="t">styling</div><h3>Modular CSS</h3><p>A separate stylesheet per page over a shared base, so re-theming the template is a contained, low-risk change.</p></div>
+      <div class="tool"><div class="t">packaging</div><h3>Docker Compose</h3><p>Clone, <code>docker compose up</code>, and a working site is running — the fastest possible path from template to live.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">Architecture</p>
+    <h2>From clone to your own site</h2>
+    <p>The template is designed around the journey a new owner takes. Each step is a seam meant to be customised.</p>
+    <ol class="flow">
+      <li><h3>Clone the template <span class="tag on">live</span></h3><p>Start from the repo as a base; the whole skeleton of a personal site comes with it.</p></li>
+      <li><h3>Run it as-is <span class="tag on">live</span></h3><p>One command brings up a working but empty site, so you see the shape before you change anything.</p></li>
+      <li><h3>Configure settings <span class="tag on">live</span></h3><p>Project name, site settings and secrets are the first seam — the obvious things to make yours.</p></li>
+      <li><h3>Fill the content <span class="tag on">live</span></h3><p>Add your projects, publications, talks and courses through the admin; the pages populate themselves.</p></li>
+      <li><h3>Re-theme <span class="tag on">live</span></h3><p>Swap the per-page CSS to change the look without touching the logic underneath.</p></li>
+      <li><h3>Deploy <span class="tag on">live</span></h3><p>Ship the container, and your personalised copy is live.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">How it runs</p>
+    <h2>Up and running in minutes</h2>
+    <p>The whole promise of a template is speed from zero to working. The path is short:</p>
+    <ul class="learn">
+      <li><b>Clone:</b> use the repo as a starting point for a brand-new personal site.</li>
+      <li><b>Bring it up:</b> <code>docker compose up</code> applies migrations and serves the empty shell.</li>
+      <li><b>Make it yours:</b> log into the admin, add your content, adjust the styling, and deploy.</li>
+    </ul>
+    <p class="muted" style="margin-top:18px">In my rebuild I focused on keeping things generic — resisting the urge to bake in any one person's details, so the next owner inherits a clean slate.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="kicker">Reflection</p>
+    <h2>What rebuilding it taught me</h2>
+    <ul class="learn">
+      <li><b>Generic is a design goal, not an afterthought.</b> Every name or detail I removed forced a clear decision about what belongs to the user.</li>
+      <li><b>Defaults decide the first impression.</b> A template that runs the moment you clone it teaches more than pages of setup instructions.</li>
+      <li><b>Seams should be obvious.</b> Settings, content models and per-page CSS are the places people change — keeping them separate keeps customising safe.</li>
+      <li><b>Reuse is its own skill.</b> Building something for one site is easy; building it so a stranger can adopt it is a different, harder craft.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="credit">
+      <div class="k">About this build</div>
+      <p style="margin:0">An original, from-scratch build by <b>Andrea</b> — written to learn what turns a one-off Django site into a reusable template anyone can clone and make their own. Plain HTML/CSS for this showcase, deployed on GitHub Pages.</p>
+    </div>
+    <p class="fine">Built from scratch by Andrea · one of an ongoing series of learning builds.</p>
+  </div>
+</footer>
+</body>
+</html>
